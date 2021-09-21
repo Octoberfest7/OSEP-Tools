@@ -1,0 +1,7 @@
+C:\Users\User\source\repos\ConsoleApp1\Runnerinject\bin\x64\Debug\Runnerinject.exe.config
+C:\Users\User\source\repos\ConsoleApp1\Runnerinject\bin\x64\Debug\Runnerinject.exe
+C:\Users\User\source\repos\ConsoleApp1\Runnerinject\bin\x64\Debug\Runnerinject.pdb
+C:\Users\User\source\repos\ConsoleApp1\Runnerinject\obj\x64\Debug\Runnerinject.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\ConsoleApp1\Runnerinject\obj\x64\Debug\Runnerinject.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\ConsoleApp1\Runnerinject\obj\x64\Debug\Runnerinject.exe
+C:\Users\User\source\repos\ConsoleApp1\Runnerinject\obj\x64\Debug\Runnerinject.pdb
