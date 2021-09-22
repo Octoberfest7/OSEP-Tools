@@ -1,0 +1,7 @@
+C:\Users\User\source\repos\ConsoleApp1\Builder\bin\Release\Builder.exe.config
+C:\Users\User\source\repos\ConsoleApp1\Builder\bin\Release\Builder.exe
+C:\Users\User\source\repos\ConsoleApp1\Builder\bin\Release\Builder.pdb
+C:\Users\User\source\repos\ConsoleApp1\Builder\obj\Release\Builder.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\ConsoleApp1\Builder\obj\Release\Builder.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\ConsoleApp1\Builder\obj\Release\Builder.exe
+C:\Users\User\source\repos\ConsoleApp1\Builder\obj\Release\Builder.pdb
