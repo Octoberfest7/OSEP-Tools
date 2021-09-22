@@ -176,7 +176,7 @@ namespace Hollow
                     ref processSecurity,
                     ref threadSecurity,
                     false,
-                    0x0008004,
+                    0x00080004,
                     IntPtr.Zero,
                     null,
                     ref startInfoEx,
