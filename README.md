@@ -6,11 +6,17 @@ Powerhollow.py - Python3 script to generate .PS1 payloads that perform process h
 
 Formatshellcode.py - Python3 script to format C# shellcode output by msfvenom into proper format for use with Builder.exe.
 
+Port_ipeggs.py - Python3 script to format C# shellcode output by msfvenom into proper format for user with Builder.exe. FOR USE WITH CLI PAYLOADS!
+
 Builder - C# project that compiles to Builder.exe which will craft different .exe/.dll payloads from Template.cs files in other projects.
 
 Hollow - C# project that compiles to Hollow.exe which performs process hollowing with PPID spoofing.
 
 Runnerinject - C# project that compiel to Runnerinject.exe which performs process injection.
+
+x64_met_staged_reversetcp_inject.exe - Command line args: IP PORT PROCESS_TO_INJECT(explorer)
+
+x64_met_staged_reversetcp_hollow.exe - Command line args: IP PORT PROCESS_TO_HOLLOW(c:\\windows\\system32\\svchost.exe) PPID_SPOOF(explorer) 
 
 pscradle.docm - Word doc with caeser cipher encoding that calls powershell download cradle.  Use with vbobfuscate.ps1 to generate and replace obfuscated text in pscradle.docm.
 
