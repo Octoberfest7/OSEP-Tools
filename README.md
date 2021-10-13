@@ -18,6 +18,8 @@ x64_met_staged_reversetcp_inject.exe - Command line args: IP PORT PROCESS_TO_INJ
 
 x64_met_staged_reversetcp_hollow.exe - Command line args: IP PORT PROCESS_TO_HOLLOW(c:\\windows\\system32\\svchost.exe) PPID_SPOOF(explorer) 
 
+sql.exe - x64 application for exploitation of linked SQL servers
+
 pscradle.docm - Word doc with caeser cipher encoding that calls powershell download cradle.  Use with vbobfuscate.ps1 to generate and replace obfuscated text in pscradle.docm.
 
 vbobfuscate.ps1 - ps1 to generate caeser cipher code for pscradle.  Make sure offsets match for encrypt/decrypt. First output is download cradle, last is app name for app name check before running. 
