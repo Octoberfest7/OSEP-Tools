@@ -52,4 +52,9 @@ Hollowing tools:
   Detect word version (2019 vs earlier) in order to go ahead and patch amsi or not. 
   Detect word architecture/include shellcode for both x64 and x86 word so we can get a good shell no matter how we land.
   
+  Discoveries:
+  Latest patch defender (Oct 2021) seems to have an "AND" based signature for AutoOpen().  It can be used in macros for benign purposes but as soon as API calls are included (or at least things used in shellcode runners), it flags signature based detection.
+  RtlMoveMemory API call is signatured.  Use RtlFillMemory instead. 
+  Resolve Amsi.dll and the function calls within it either dynamically or heavily obfuscated when you go to patch it.
+  
  
