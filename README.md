@@ -49,8 +49,8 @@ Hollowing tools:
   4. Go to Macro's and click record new macro.  Ensure on both screens you select the current document and not a template.  Click keyboard and then hit a key combination to map (e.g. Alt + D).  Once you hit ok/close, recording will begin.  Then go click macros again, view, select the main runner sub, and then click run.  This will map that sequence to Alt + D so that when it is entered the runner sub will be executed.
   
   To DOs:
-  Detect word version (2019 vs earlier) in order to go ahead and patch amsi or not. 
-  Detect word architecture/include shellcode for both x64 and x86 word so we can get a good shell no matter how we land.
+  1. Detect word version (2019 vs earlier) in order to go ahead and patch amsi or not. Running patch function on word < 2019 results in crash.
+  2. Detect word architecture/include shellcode for both x64 and x86 word so we can get a good shell no matter how we land.
   
   Discoveries:
   Latest patch defender (Oct 2021) seems to have an "AND" based signature for AutoOpen().  It can be used in macros for benign purposes but as soon as API calls are included (or at least things used in shellcode runners), it flags signature based detection.
