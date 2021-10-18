@@ -24,6 +24,8 @@ pscradle.docm - Word doc with caeser cipher encoding that calls powershell downl
 
 vbobfuscate.ps1 - ps1 to generate caeser cipher code for pscradle.  Make sure offsets match for encrypt/decrypt. First output is download cradle, last is app name for app name check before running. 
 
+clm-bypass.cs - C# code that can be comiled to bypass AMSI and run powershell commands.
+
 # NOTES
 
 With Powerinject/Powerhollow make sure you think about whether you will be calling PS download cradle from powershell or cmd.exe and use the appropriate mode when constructing payloads.  When you call powershell.exe <cradle> from cmd.exe or even from another powershell window, you are creating a child process and while the embedded AMSI bypass may work for the child process the parent process will detect the child performing malicious actions and flag it.
