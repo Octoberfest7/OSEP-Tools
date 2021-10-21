@@ -14,11 +14,17 @@ Hollow - C# project that compiles to Hollow.exe which performs process hollowing
 
 Runnerinject - C# project that compiel to Runnerinject.exe which performs process injection.
 
+clinject - C# project source code for (IP + port + process) cli passed process injection payload.
+
+clhollow - C# project source code for (IP + port + PPID + process) cli passed process hollowing payload.
+
+sql - C# project source code for SQL.exe project for exploitation of MSSQL servers in AD.
+
 x64_met_staged_reversetcp_inject.exe - Command line args: IP PORT PROCESS_TO_INJECT(explorer)
 
 x64_met_staged_reversetcp_hollow.exe - Command line args: IP PORT PROCESS_TO_HOLLOW(c:\\windows\\system32\\svchost.exe) PPID_SPOOF(explorer) 
 
-sql.exe - x64 application for exploitation of linked SQL servers
+sql.exe - x64 application for exploitation of linked SQL servers.  Has functionality for use with InstallUtil AppLocker bypass.
 
 pscradle.docm - Word doc with caeser cipher encoding that calls powershell download cradle.  Use with vbobfuscate.ps1 to generate and replace obfuscated text in pscradle.docm.
 
