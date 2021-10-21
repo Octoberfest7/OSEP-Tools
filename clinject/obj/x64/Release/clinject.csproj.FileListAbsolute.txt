@@ -1,0 +1,7 @@
+C:\Users\User\source\repos\ConsoleApp1\clinject\bin\x64\Release\clinject.exe.config
+C:\Users\User\source\repos\ConsoleApp1\clinject\bin\x64\Release\clinject.exe
+C:\Users\User\source\repos\ConsoleApp1\clinject\bin\x64\Release\clinject.pdb
+C:\Users\User\source\repos\ConsoleApp1\clinject\obj\x64\Release\clinject.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\ConsoleApp1\clinject\obj\x64\Release\clinject.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\ConsoleApp1\clinject\obj\x64\Release\clinject.exe
+C:\Users\User\source\repos\ConsoleApp1\clinject\obj\x64\Release\clinject.pdb

@@ -1,0 +1,7 @@
+C:\Users\User\source\repos\ConsoleApp1\clhollow\bin\x64\Release\clhollow.exe.config
+C:\Users\User\source\repos\ConsoleApp1\clhollow\bin\x64\Release\clhollow.exe
+C:\Users\User\source\repos\ConsoleApp1\clhollow\bin\x64\Release\clhollow.pdb
+C:\Users\User\source\repos\ConsoleApp1\clhollow\obj\x64\Release\clhollow.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\ConsoleApp1\clhollow\obj\x64\Release\clhollow.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\ConsoleApp1\clhollow\obj\x64\Release\clhollow.exe
+C:\Users\User\source\repos\ConsoleApp1\clhollow\obj\x64\Release\clhollow.pdb
