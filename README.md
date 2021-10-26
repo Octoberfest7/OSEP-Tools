@@ -12,11 +12,13 @@ Builder - C# project that compiles to Builder.exe which will craft different .ex
 
 Hollow - C# project that compiles to Hollow.exe which performs process hollowing with PPID spoofing.
 
-Runnerinject - C# project that compiel to Runnerinject.exe which performs process injection.
+Runnerinject - C# project that compiles to Runnerinject.exe which performs process injection.
 
 clinject - C# project source code for (IP + port + process) cli passed process injection payload.
 
 clhollow - C# project source code for (IP + port + PPID + process) cli passed process hollowing payload.
+
+Servicehollow - C# project that compiles to a service exe that performs process hollowing + ppid spoofing.  Create service that will run as system on computer boot with sc create <servicename> binpath= c:\path\to\file.exe start= auto
 
 bypass-clm - C# project source code for InstallUtil bypass for executing powershell commands interactively via cli.  Contains AMSI patch
 
