@@ -1,0 +1,8 @@
+C:\Users\User\source\repos\consoleapp1\servicehollow\obj\x64\Release\servicehollow.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\consoleapp1\servicehollow\obj\x64\Release\servicehollow.csproj.CoreCompileInputs.cache
+c:\Users\User\Servicehollow.exe.config
+c:\Users\User\source\repos\consoleapp1\servicehollow\obj\x64\Release\Servicehollow.exe
+c:\Users\User\Servicehollow.exe
+C:\Users\User\source\repos\ConsoleApp1\Servicehollow\bin\x64\Release\Servicehollow.exe
+C:\Users\User\source\repos\ConsoleApp1\Servicehollow\obj\x64\Release\Servicehollow.pdb
+c:\Users\User\Servicehollow.pdb
