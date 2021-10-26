@@ -1,7 +1,0 @@
-C:\Users\User\bypass-clm-master\bypass-clm\bin\x64\Release\bypass-clm.exe.config
-C:\Users\User\bypass-clm-master\bypass-clm\bin\x64\Release\bypass-clm.exe
-C:\Users\User\bypass-clm-master\bypass-clm\bin\x64\Release\bypass-clm.pdb
-C:\Users\User\bypass-clm-master\bypass-clm\obj\x64\Release\bypass-clm.csproj.AssemblyReference.cache
-C:\Users\User\bypass-clm-master\bypass-clm\obj\x64\Release\bypass-clm.csproj.CoreCompileInputs.cache
-C:\Users\User\bypass-clm-master\bypass-clm\obj\x64\Release\bypass-clm.exe
-C:\Users\User\bypass-clm-master\bypass-clm\obj\x64\Release\bypass-clm.pdb
