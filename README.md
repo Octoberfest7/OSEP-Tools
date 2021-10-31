@@ -51,6 +51,10 @@ Injection tools:
 Hollowing tools:
     Your target parent process for PPID spoofing must be of the same integrity or lower than the method by which you have code execution. I.e. if you are running in medium integrity you cannot specify spoolsv as the parent process.  Hollowed process will inherity integrity of parent process.
   
+To DO's:
+  -Add Installutil bypass to D/invoke payload suite
+  
+  
   On Word Macros:
   
   WordMacroRunner - This is a baseline runner that will return a shell from WINWORD.exe. Has capabilities to detect AMSI and patch it if found (for both 32bit and 64 bit) as well as contains shellcode for both 32bit and 64 bit Word so it can execute after detecting architecture. 
