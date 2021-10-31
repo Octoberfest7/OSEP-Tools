@@ -8,6 +8,8 @@ Formatshellcode.py - Python3 script to format C# shellcode output by msfvenom in
 
 Port_ipeggs.py - Python3 script to format C# shellcode output by msfvenom into proper format for user with Builder.exe. FOR USE WITH CLI PAYLOADS!
 
+D_Invoke - C# project that produces D/invoke payloads (basic, injector, hollower + ppid spoof) in exe, dll, or service exe format.  Use pre-built builder.exe in the D_Invoke directory.
+
 Builder - C# project that compiles to Builder.exe which will craft different .exe/.dll payloads from Template.cs files in other projects.
 
 Hollow - C# project that compiles to Hollow.exe which performs process hollowing with PPID spoofing.
