@@ -77,4 +77,8 @@ To DO's:
   Starting in Word 2019 the program is 64 bit by default. This means Word 2019,O365,2021 are all good candidates for Injection because Orgs/individuals would have to go out of their way to have downloaded the 32 bit one.
   Meterpreter shells after using Migrate seem to get caught by defender sometimes... Doesn't seem to be the case for straight up injection payloads.
   
+# RESOURCES
+  https://depthsecurity.com/blog/obfuscating-malicious-macro-enabled-word-docs
+  https://secureyourit.co.uk/wp/2020/04/18/enumerating-process-modules-in-vba/
+  
  
