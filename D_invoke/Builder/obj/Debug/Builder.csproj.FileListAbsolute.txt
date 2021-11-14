@@ -1,7 +1,0 @@
-C:\Users\User\source\repos\D_invoke\Builder\bin\Debug\Builder.exe.config
-C:\Users\User\source\repos\D_invoke\Builder\bin\Debug\Builder.exe
-C:\Users\User\source\repos\D_invoke\Builder\bin\Debug\Builder.pdb
-C:\Users\User\source\repos\D_invoke\Builder\obj\Debug\Builder.csproj.AssemblyReference.cache
-C:\Users\User\source\repos\D_invoke\Builder\obj\Debug\Builder.csproj.CoreCompileInputs.cache
-C:\Users\User\source\repos\D_invoke\Builder\obj\Debug\Builder.exe
-C:\Users\User\source\repos\D_invoke\Builder\obj\Debug\Builder.pdb

@@ -1,7 +1,0 @@
-C:\Users\User\source\repos\D_invoke\exe\obj\x64\Release\exe.csproj.AssemblyReference.cache
-C:\Users\User\source\repos\D_invoke\exe\obj\x64\Release\exe.csproj.CoreCompileInputs.cache
-C:\Users\User\source\repos\D_invoke\exe.exe.config
-C:\Users\User\source\repos\D_invoke\exe\obj\x64\Release\exe.exe
-C:\Users\User\source\repos\D_invoke\exe\obj\x64\Release\exe.pdb
-C:\Users\User\source\repos\D_invoke\exe.exe
-C:\Users\User\source\repos\D_invoke\exe.pdb

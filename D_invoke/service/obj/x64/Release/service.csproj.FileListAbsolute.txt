@@ -1,7 +1,0 @@
-C:\Users\User\source\repos\D_invoke\service.exe
-C:\Users\User\source\repos\D_invoke\service\obj\x64\Release\service.csproj.AssemblyReference.cache
-C:\Users\User\source\repos\D_invoke\service\obj\x64\Release\service.csproj.CoreCompileInputs.cache
-C:\Users\User\source\repos\D_invoke\service.exe.config
-C:\Users\User\source\repos\D_invoke\service\obj\x64\Release\service.exe
-C:\Users\User\source\repos\D_invoke\service\obj\x64\Release\service.pdb
-C:\Users\User\source\repos\D_invoke\service.pdb
