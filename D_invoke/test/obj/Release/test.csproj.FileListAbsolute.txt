@@ -1,0 +1,7 @@
+C:\Users\User\source\repos\D_invoke\test\bin\Release\test.exe.config
+C:\Users\User\source\repos\D_invoke\test\bin\Release\test.exe
+C:\Users\User\source\repos\D_invoke\test\bin\Release\test.pdb
+C:\Users\User\source\repos\D_invoke\test\obj\Release\test.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\D_invoke\test\obj\Release\test.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\D_invoke\test\obj\Release\test.exe
+C:\Users\User\source\repos\D_invoke\test\obj\Release\test.pdb

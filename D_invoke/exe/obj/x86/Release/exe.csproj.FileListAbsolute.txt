@@ -1,0 +1,5 @@
+C:\Users\User\source\repos\D_invoke\exe\obj\x86\Release\exe.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\D_invoke\exe\obj\x86\Release\exe.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\D_invoke\exe.exe.config
+C:\Users\User\source\repos\D_invoke\exe\obj\x86\Release\exe.exe
+C:\Users\User\source\repos\D_invoke\exe.exe
