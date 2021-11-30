@@ -28,6 +28,10 @@ x64_met_staged_reversetcp_inject.exe - Command line args: IP PORT PROCESS_TO_INJ
 
 x64_met_staged_reversetcp_hollow.exe - Command line args: IP PORT PROCESS_TO_HOLLOW(c:\\windows\\system32\\svchost.exe) PPID_SPOOF(explorer) 
   
+x64_met_staged_reversehttps_inject.exe - Command line args: IP PORT PROCESS_TO_INJECT(explorer)
+
+x64_met_staged_reversehttps_hollow.exe - Command line args: IP PORT PROCESS_TO_HOLLOW(c:\\windows\\system32\\svchost.exe) PPID_SPOOF(explorer) 
+  
 ps-bypass - For use with InstallUtil. Contains AMSI binary patch. Will start an interactive powershell session in FullLanguageMode.
 
 sql.exe - x64 application for exploitation of linked SQL servers.  Has functionality for use with InstallUtil AppLocker bypass.
