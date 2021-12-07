@@ -8,6 +8,8 @@ Formatshellcode.py - Python3 script to format C# shellcode output by msfvenom in
 
 Port_ipeggs.py - Python3 script to format C# shellcode output by msfvenom into proper format for user with Builder.exe. FOR USE WITH CLI PAYLOADS!
 
+NonDN2J.hta - hta file that utilizes bitsadmin, certutil, and installutil to download and execute a exe payload (installutil bypass capable) on victim click
+
 D_Invoke - C# project that produces D/invoke payloads (basic, injector, hollower + ppid spoof) in exe, dll, or service exe format.  Use pre-built builder.exe in the D_Invoke directory.
 
 clinject - C# project source code for (IP + port + process) cli passed process injection payload.
