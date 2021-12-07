@@ -1,7 +1,0 @@
-C:\Users\User\source\repos\ConsoleApp1\Hollow\obj\x64\Release\Hollow.csproj.AssemblyReference.cache
-C:\Users\User\source\repos\ConsoleApp1\Hollow\obj\x64\Release\Hollow.csproj.CoreCompileInputs.cache
-C:\Users\User\source\repos\ConsoleApp1\Hollow\obj\x64\Release\Hollow.exe
-C:\Users\User\source\repos\ConsoleApp1\Hollow\obj\x64\Release\Hollow.pdb
-C:\Users\User\Hollow.exe.config
-C:\Users\User\Hollow.exe
-C:\Users\User\Hollow.pdb
