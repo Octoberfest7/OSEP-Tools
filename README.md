@@ -10,17 +10,9 @@ Port_ipeggs.py - Python3 script to format C# shellcode output by msfvenom into p
 
 D_Invoke - C# project that produces D/invoke payloads (basic, injector, hollower + ppid spoof) in exe, dll, or service exe format.  Use pre-built builder.exe in the D_Invoke directory.
 
-Builder - C# project that compiles to Builder.exe which will craft different .exe/.dll payloads from Template.cs files in other projects.
-
-Hollow - C# project that compiles to Hollow.exe which performs process hollowing with PPID spoofing.
-
-Runnerinject - C# project that compiles to Runnerinject.exe which performs process injection.
-
 clinject - C# project source code for (IP + port + process) cli passed process injection payload.
 
 clhollow - C# project source code for (IP + port + PPID + process) cli passed process hollowing payload.
-
-Servicehollow - C# project that compiles to a service exe that performs process hollowing + ppid spoofing.  Create service that will run as system on computer boot with sc create <servicename> binpath= c:\path\to\file.exe start= auto
 
 sql - C# project source code for SQL.exe project for exploitation of MSSQL servers in AD.
 
@@ -70,10 +62,6 @@ Injection tools:
   
 Hollowing tools:
     Your target parent process for PPID spoofing must be of the same integrity or lower than the method by which you have code execution. I.e. if you are running in medium integrity you cannot specify spoolsv as the parent process.  Hollowed process will inherity integrity of parent process.
-  
-To DO's:
-  -Add Installutil bypass to D/invoke payload suite
-  
   
   On Word Macros:
   
