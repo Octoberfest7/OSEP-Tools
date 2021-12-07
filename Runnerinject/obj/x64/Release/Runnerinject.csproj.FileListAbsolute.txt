@@ -1,5 +1,0 @@
-C:\Users\User\source\repos\ConsoleApp1\Runnerinject\obj\x64\Release\Runnerinject.csproj.CoreCompileInputs.cache
-C:\Users\User\source\repos\ConsoleApp1\Runnerinject\obj\x64\Release\Runnerinject.exe
-C:\Users\User\source\repos\ConsoleApp1\Runnerinject\obj\x64\Release\Runnerinject.csproj.AssemblyReference.cache
-C:\Users\User\Runnerinject.exe.config
-C:\Users\User\Runnerinject.exe

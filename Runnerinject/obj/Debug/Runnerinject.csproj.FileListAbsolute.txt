@@ -1,6 +1,0 @@
-C:\Users\User\source\repos\ConsoleApp1\Runnerinject\bin\Debug\Runnerinject.exe.config
-C:\Users\User\source\repos\ConsoleApp1\Runnerinject\bin\Debug\Runnerinject.exe
-C:\Users\User\source\repos\ConsoleApp1\Runnerinject\bin\Debug\Runnerinject.pdb
-C:\Users\User\source\repos\ConsoleApp1\Runnerinject\obj\Debug\Runnerinject.csproj.CoreCompileInputs.cache
-C:\Users\User\source\repos\ConsoleApp1\Runnerinject\obj\Debug\Runnerinject.exe
-C:\Users\User\source\repos\ConsoleApp1\Runnerinject\obj\Debug\Runnerinject.pdb
