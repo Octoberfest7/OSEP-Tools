@@ -1,0 +1,71 @@
+﻿  exploit.cpp
+C:\Users\User\shakeitoff\src\exploit.cpp(40,57): warning C4267: '=': conversion from 'size_t' to 'DWORD', possible loss of data
+C:\Users\User\shakeitoff\src\exploit.cpp(44,12): warning C4267: 'argument': conversion from 'size_t' to 'DWORD', possible loss of data
+C:\Users\User\shakeitoff\src\exploit.cpp(141,115): warning C4267: 'argument': conversion from 'size_t' to 'DWORD', possible loss of data
+C:\Users\User\shakeitoff\src\exploit.cpp(179,14): warning C4101: 'status': unreferenced local variable
+C:\Users\User\shakeitoff\src\exploit.cpp(183,11): warning C4101: 'Length': unreferenced local variable
+C:\Users\User\shakeitoff\src\exploit.cpp(188,11): warning C4101: 'SecurityQualityOfService': unreferenced local variable
+C:\Users\User\shakeitoff\src\exploit.cpp(186,11): warning C4101: 'Attributes': unreferenced local variable
+C:\Users\User\shakeitoff\src\exploit.cpp(185,21): warning C4101: 'ObjectName': unreferenced local variable
+C:\Users\User\shakeitoff\src\exploit.cpp(187,11): warning C4101: 'SecurityDescriptor': unreferenced local variable
+C:\Users\User\shakeitoff\src\exploit.cpp(184,12): warning C4101: 'RootDirectory': unreferenced local variable
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xstring(2575,23): warning C4244: 'argument': conversion from '_Elem' to 'const _Elem', possible loss of data
+          with
+          [
+              _Elem=wchar_t
+          ]
+          and
+          [
+              _Elem=char
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xstring(2586): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<_Iter>(_Iter,const _Iter,std::input_iterator_tag)' being compiled
+          with
+          [
+              _Iter=wchar_t *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xstring(2586): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<_Iter>(_Iter,const _Iter,std::input_iterator_tag)' being compiled
+          with
+          [
+              _Iter=wchar_t *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xstring(2566): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<_Iter>(const _Iter,const _Iter,std::forward_iterator_tag)' being compiled
+          with
+          [
+              _Iter=wchar_t *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xstring(2566): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<_Iter>(const _Iter,const _Iter,std::forward_iterator_tag)' being compiled
+          with
+          [
+              _Iter=wchar_t *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xstring(3294): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<wchar_t*,0>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Iter=wchar_t *,
+              _Alloc=std::allocator<char>
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xstring(3294): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<wchar_t*,0>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Iter=wchar_t *,
+              _Alloc=std::allocator<char>
+          ]
+C:\Users\User\shakeitoff\src\exploit.cpp(238): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>> &std::basic_string<char,std::char_traits<char>,std::allocator<char>>::assign<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(const _Iter,const _Iter)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>
+          ]
+C:\Users\User\shakeitoff\src\exploit.cpp(238): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>> &std::basic_string<char,std::char_traits<char>,std::allocator<char>>::assign<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(const _Iter,const _Iter)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>
+          ]
+  FileOpLock.cpp
+  main.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 1331 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  shakeitoff.vcxproj -> C:\Users\User\shakeitoff\x64\Release\shakeitoff.exe
