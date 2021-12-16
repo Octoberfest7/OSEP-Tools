@@ -1,3 +1,7 @@
+# NOTE:
+
+This version of shakeitoff has been altered and combined with parts of the original InstallerFileTakeOver (linked below in the original README by the author of shakeitoff) in order to acheive code execution after overwriting the target binary.  Additionally a switch was added to allow the user to specify what file they wish to overwrite the target file with (as opposed to the original POC's which overwrote the target file with the POC).
+
 # shakeitoff
 
 A smaller, minimized, and cleaner version of [InstallerFileTakeOver](https://github.com/klinix5/InstallerFileTakeOver) aka the zero-day exploit that is a "variation" of CVE-2021-41379. This version *does not* pop a shell like `InstallerFileTakeOver`. The point of this code was to create a simpler proof of concept that more reliably demonstrates the file creation attack. This proof of concept will create the arbitrary file requested by the user (and copy itself into it to prove writablity). Demonstrating code execution is a trivial excercise left up to the reader.
