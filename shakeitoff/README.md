@@ -1,6 +1,6 @@
 # NOTE:
 
-This version of shakeitoff has been altered and combined with parts of the original InstallerFileTakeOver (linked below in the original README by the author of shakeitoff) in order to acheive code execution after overwriting the target binary.  Additionally a switch was added to allow the user to specify what file they wish to overwrite the target file with (as opposed to the original POC's which overwrote the target file with the POC).
+This version of shakeitoff has been altered and combined with parts of the original InstallerFileTakeOver (linked below in the original README by the author of shakeitoff) in order to acheive code execution after overwriting the target binary by leveraging the MicrosoftEdgeElevationService.  This of course requires that edge is installed on the target machine, and that the service exists.  This has been tested on Win10, Win11, Server 2K16, and Server 2K19.  Additionally a switch was added to allow the user to specify what file they wish to overwrite the target file with (as opposed to the original POC's which overwrote the target file with the POC).
 
 # shakeitoff
 
