@@ -12,7 +12,7 @@ NonDN2J.hta - hta file that utilizes bitsadmin, certutil, and installutil to dow
 
 D_Invoke - C# project that produces D/invoke payloads (basic, injector, hollower + ppid spoof) in exe, dll, or service exe format.  Use pre-built builder.exe in the D_Invoke directory.
 
-Shakeitoff - Modification of https://github.com/jbaines-r7/shakeitoff (CVE-2021-41379 variant) that allows user to specify file to replace target binary with and then starts the Microsoft Edge Elevation Service in order to execute the malicous binary. You need both the shakeitoff.exe and the shakeitoff.msi on target.  Note that this will replace the elevation_service.exe so make a copy of it if you need to restore! (Note: retool to automatically make a copy of the legit binary before overwriting)
+Shakeitoff - Modification of https://github.com/jbaines-r7/shakeitoff (CVE-2021-41379 variant) that allows user to specify file to replace target binary with and then starts the Microsoft Edge Elevation Service in order to execute the malicous binary. You need both the shakeitoff.exe and the shakeitoff.msi on target.  Note that this will replace the elevation_service.exe so make a copy of it if you need to restore! Tested successfully on Windows 10, 11, Server 2016, and Server 2019. This is patched as of Dec 14th 2021 (KB5008212) and was assigned the new CVE-2021-43883. 
 ````
 Usage: shakeitoff.exe -m c:\users\user\shakeitoff\shakeitoff.msi -i c:\users\user\write\ -c c:\users\user\source\repos\d_invoke\inject.exe -p "C:\Program Files (x86)\Microsoft\Edge\Application\96.0.1054.53\elevation_service.exe"
 ````
@@ -44,6 +44,33 @@ uacbypass.ps1 - UAC bypass using FODhelper to elevate priviliges on a user accou
   
 
 # NOTES
+D_invoke: This is a package built using TheWover's project and research as the foundation (https://github.com/TheWover/DInvoke, https://thewover.github.io/Dynamic-Invoke/).
+
+The inspiration for this project was to simplify the process of generating compled C# payloads.  Using this project the user never need open visual studio.
+
+The steps for usage are this:
+
+1. Generate shellcode (This was built with msfvenom shellcode in c# as the primary input, however it was retooled to take .bin files during some testing with cobaltsrike)
+2. Format shellcode for use with Builder.exe (formatshellcode.py script does this with msfvenom shellcode)
+3. Transfer formatted shellcode to windows dev machine
+4. Run builder.exe with the proper switches
+5. Voila. You have your AES encryped shellcode D/invoke payload in whatever format and technique you want!
+
+The foundation of this package is Builder.exe.  This application allows the user to specify several options to include:
+
+Format of paylad (exe, dll, service exe)
+Technique (local injection, remote injection, or process hollowing with PPID spoofing)
+Shellcode file (file containing parsed shellcode.  Formatshellcode.py is written to properly parse msfvenom csharp format shellcode for user with builder.exe)
+Process name (Process for remote injection OR process to spawn for hollowing)
+Parent Process (Process for PPID spoofing with process hollowing technique)
+Architecture (x86, x64)
+
+After the user specifies all the above options, a "template.cs" file within the selected format project (exe, dll, service) will be edited and the payload pieced together.  Builder.exe has hardcoded within it the necessary code for the various options (d/invoke statements for hollowing w/ ppid spoofing for example) that will be placed into the template file in the proper manner in the given format (exe, dll, service exe).  Builder will AES-256 encrypt the shellcode (generating a new key and IV each time it is run) and embed the encrypted shellcode within the template file. Once the template file is complete, it will be saved over program.cs in the respective format project.  MSBuild will the be called on the updated program.cs file in order to create the final payload in exe, dll, or service exe format.
+
+The produced payloads use D/invoke statements for most, but not all of the API calls. Certain simple ones (As well as certain complex ones in the process hollowing payload) still use p/invoke.  Additionally direct syscalls have not been implemented in this project... It is maybe a direction for further work however given that certain EDR's don't even hook userland syscalls anymore, I haven't done this yet as I need to do more research on the correct direction to go in the future. 
+
+Note that this tool was developed for personal use, not production.  As such there are some shortcomings in that there are hardcoded paths where Builder.exe expects to find things. Builder.exe should only be run from within the d/invoke folder (i.e. builder.exe should be in the same folder as the dll, exe, and service folders as it is on the hosted repo).  Additionally MSBuild is hardcoded for VS2019. If you are utilizing a different version, you will need to edit the source code of Builder.exe and update it with the path to MSBuild within your version.
+  
   
 Powershell AMSI bypass:
   
