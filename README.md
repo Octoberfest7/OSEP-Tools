@@ -84,7 +84,20 @@ Clinject and Clhollow:
 These are C# projects that have been modified in order to accept command line Lhost, Lport, and processes for targeting.  This allows a user to drop the payload on whatever target machine without worry of needing to re-roll shellcode if the attackers IP changes, or the payload needs to be pointed at a different machine in order to hit a tunnel and egress the network. 
 
 Example usage: clinject.exe 192.168.1.1 443 explorer
-  
+
+SQL:
+
+This project is a pretty robust tool for exploitation of MSSQL instances.  Features include:
+Enumeration of MSSQL instances (calls setspn).
+Enumeration of linked SQL servers, users, users that can be impersonated, user context.
+Execute arbitrary SQL commands
+Enable XP_cmdshell or OLE objects on the current or a linked server
+Execute XP_cmdshell or OLE object commands on the current or a linked server
+Force authentication of SQL server to an SMB share for use with ntlmrelayx
+
+These features are all functional over bidirectional links.
+Installutil bypass is baked in so this tool can be run on a machine with Application whitelisting in place. 
+
 Powershell AMSI bypass:
   
   Win10
