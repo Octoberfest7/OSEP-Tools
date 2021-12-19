@@ -40,7 +40,6 @@ Word_pscradle.docm - Word doc with caeser cipher encoding that calls powershell 
 vbobfuscate.ps1 - ps1 to generate caeser cipher code for pscradle.  Make sure offsets match for encrypt/decrypt. First output is download cradle, last is app name for app name check before running. 
 
 uacbypass.ps1 - UAC bypass using FODhelper to elevate priviliges on a user account who has Administrator privs but is running in a medium integrity process. Usage: Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass;. .\bypass.ps1;alt
-(note this will prompt 
   
 
 # NOTES
