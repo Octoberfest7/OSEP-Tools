@@ -55,7 +55,7 @@ D_invoke:
 
 This is a package built using TheWover's project and research as the foundation (https://github.com/TheWover/DInvoke, https://thewover.github.io/Dynamic-Invoke/).
 
-The inspiration for this project was to simplify the process of generating compled C# payloads.  By using this project, a user never need open visual studio when creating payloads.
+The inspiration for this project was to simplify the process of generating compiled C# payloads.  By using this project, a user never need open visual studio when creating payloads.
 
 The steps for usage are this:
 
@@ -67,7 +67,7 @@ The steps for usage are this:
 
 The foundation of this package is Builder.exe.  This application allows the user to specify several options to include:
 
-Format of paylad (exe, dll, service exe)
+Format of payload (exe, dll, service exe)
 Technique (local injection, remote injection, or process hollowing with PPID spoofing)
 Shellcode file (file containing parsed shellcode.  Formatshellcode.py is written to properly parse msfvenom csharp format shellcode for user with builder.exe)
 Process name (Process for remote injection OR process to spawn for hollowing)
