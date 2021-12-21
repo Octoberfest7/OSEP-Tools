@@ -20,7 +20,7 @@ NonDN2J.hta - hta file that utilizes bitsadmin, certutil, and installutil to dow
 
 D_Invoke - C# project that produces D/invoke payloads (basic, injector, hollower + ppid spoof) in exe, dll, or service exe format.  Use pre-built builder.exe in the D_Invoke directory.
 
-Shakeitoff - Modification of https://github.com/jbaines-r7/shakeitoff (CVE-2021-41379 variant) that allows user to specify file to replace target binary with and then starts the Microsoft Edge Elevation Service in order to execute the malicous binary. You need both the shakeitoff.exe and the shakeitoff.msi on target.  Note that this will replace the elevation_service.exe so make a copy of it if you need to restore! Tested successfully on Windows 10, 11, Server 2016, and Server 2019. This is patched as of Dec 14th 2021 (KB5008212) and was assigned the new CVE-2021-43883. 
+Shakeitoff - Modification of https://github.com/jbaines-r7/shakeitoff (CVE-2021-41379 variant) that allows user to specify file to replace target binary with and then starts the Microsoft Edge Elevation Service in order to execute the malicous binary. You need both the shakeitoff.exe and the shakeitoff.msi on target.  Note that this will replace the elevation_service.exe so make a copy of it if you need to restore! Tested successfully on Windows 10, 11, Server 2016, and Server 2019. This is patched as of Dec 14th 2021 (KB5008212) and was assigned the new CVE-2021-43883. Check out the above linked repo for more information on the exploit and how to use it.
 ````
 Usage: shakeitoff.exe -m c:\users\user\shakeitoff\shakeitoff.msi -i c:\users\user\write\ -c c:\users\user\source\repos\d_invoke\inject.exe -p "C:\Program Files (x86)\Microsoft\Edge\Application\96.0.1054.53\elevation_service.exe"
 ````
