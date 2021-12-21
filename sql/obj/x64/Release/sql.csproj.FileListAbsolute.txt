@@ -1,7 +1,0 @@
-C:\Users\User\source\repos\ConsoleApp1\sql\bin\x64\Release\sql.exe.config
-C:\Users\User\source\repos\ConsoleApp1\sql\bin\x64\Release\sql.exe
-C:\Users\User\source\repos\ConsoleApp1\sql\bin\x64\Release\sql.pdb
-C:\Users\User\source\repos\ConsoleApp1\sql\obj\x64\Release\sql.csproj.AssemblyReference.cache
-C:\Users\User\source\repos\ConsoleApp1\sql\obj\x64\Release\sql.csproj.CoreCompileInputs.cache
-C:\Users\User\source\repos\ConsoleApp1\sql\obj\x64\Release\sql.exe
-C:\Users\User\source\repos\ConsoleApp1\sql\obj\x64\Release\sql.pdb
