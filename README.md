@@ -1,6 +1,6 @@
 # Disclaimer
 
-All of these tools were developed for use in the OSEP course.  During development of them, as I learned more, in many cases I went above and beyond what the course taught because I figured "Why not build things against latest patch AV?".  That is not to say that all of the things in this repo were beating Live Defender; however at one point or another, most of them were.  I hope that they may be of use to others, either for direct usage or to serve as inspiration for further work.
+All of these tools were developed for use in the OSEP course.  During development of them, as I learned more, in many cases I went above and beyond what the course taught because I figured "Why not build things against latest patch AV?".  That is not to say that all of the things in this repo are now beating Live Defender; however at one point or another, most of them were.  I hope that they may be of use to others, either for direct usage or to serve as inspiration for further work.
 
 There is very little in terms of actual novel tradecraft here; it is a combination of a myriad of resources provided by people far smarter than I.  The majority of the heavy lifting I did here was towards automation.  I wanted an easy, standardized way to generate payloads for use in the OSEP course.
 
