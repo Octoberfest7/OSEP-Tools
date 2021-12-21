@@ -136,6 +136,7 @@ Hollowing tools:
   
   To DOs:
   Integrate Injection runner with baseline runner so that injection is performed if x64 word is detected.
+  Implement dynamic AMSI search capability as seen here: https://secureyourit.co.uk/wp/2019/05/10/dynamic-microsoft-office-365-amsi-in-memory-bypass-using-vba/
   
   Discoveries:
   Latest patch defender (Oct 2021) seems to have an "AND" based signature for AutoOpen().  It can be used in macros for benign purposes but as soon as API calls are included (or at least things used in shellcode runners), it flags signature based detection.
