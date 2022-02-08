@@ -14,7 +14,7 @@ Powerhollow.py - Python3 script to generate .PS1 payloads that perform process h
 
 Formatshellcode.py - Python3 script to format C# shellcode output by msfvenom into proper format for use with Builder.exe.
 
-Port_ipeggs.py - Python3 script to format C# shellcode output by msfvenom into proper format for user with Builder.exe. FOR USE WITH CLI PAYLOADS!
+Port_ipeggs.py - Python3 script to format C# shellcode output by msfvenom into proper format for user with Builder.exe. FOR USE WITH CLI PAYLOADS! **NOTE: Does not work with all payloads.  Confirmed works with reverse_tcp, confirmed DOES NOT work with HTTPS
 
 NonDN2J.hta - hta file that utilizes bitsadmin, certutil, and installutil to download and execute a exe payload (installutil bypass capable) on victim click
 
