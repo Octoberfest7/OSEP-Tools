@@ -100,15 +100,16 @@ Example usage: clinject.exe 192.168.1.1 443 explorer
 SQL:
 
 This project is a pretty robust tool for exploitation of MSSQL instances.  Features include:
-Enumeration of MSSQL instances (calls setspn).
-Enumeration of linked SQL servers, users, users that can be impersonated, user context.
-Execute arbitrary SQL commands
-Enable XP_cmdshell or OLE objects on the current or a linked server
-Execute XP_cmdshell or OLE object commands on the current or a linked server
-Force authentication of SQL server to an SMB share for use with ntlmrelayx
-
+```
+-Enumeration of MSSQL instances (calls setspn).
+-Enumeration of linked SQL servers, users, users that can be impersonated, user context.
+-Execute arbitrary SQL commands
+-Enable XP_cmdshell or OLE objects on the current or a linked server
+-Execute XP_cmdshell or OLE object commands on the current or a linked server
+-Force authentication of SQL server to an SMB share for use with ntlmrelayx
+```
 These features are all functional over bidirectional links.
-Installutil bypass is baked in so this tool can be run on a machine with Application whitelisting in place. 
+Installutil bypass is baked in so this tool can be run on a machine with Application whitelisting in place. Note that when running sql.exe with instalutil, all switches must be passed BEFORE you specify sql.exe.
 
 Powershell AMSI bypass:
   
