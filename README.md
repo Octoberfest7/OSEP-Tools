@@ -72,12 +72,12 @@ The steps for usage are this:
 
 The foundation of this package is Builder.exe.  This application allows the user to specify several options to include:
 
-Format of payload (exe, dll, service exe)
-Technique (local injection, remote injection, or process hollowing with PPID spoofing)
-Shellcode file (file containing parsed shellcode.  Formatshellcode.py is written to properly parse msfvenom csharp format shellcode for user with builder.exe)
-Process name (Process for remote injection OR process to spawn for hollowing)
-Parent Process (Process for PPID spoofing with process hollowing technique)
-Architecture (x86, x64)
+1. Format of payload (exe, dll, service exe)
+2. Technique (local injection, remote injection, or process hollowing with PPID spoofing)
+3. Shellcode file (file containing parsed shellcode.  Formatshellcode.py is written to properly parse msfvenom csharp format shellcode for user with builder.exe)
+4. Process name (Process for remote injection OR process to spawn for hollowing)
+5. Parent Process (Process for PPID spoofing with process hollowing technique)
+6. Architecture (x86, x64)
 
 After the user specifies all the above options, a "template.cs" file within the selected format project (exe, dll, service) will be edited and the payload pieced together.  Builder.exe has hardcoded within it the necessary code for the various options (d/invoke statements for hollowing w/ ppid spoofing for example) that will be placed into the template file in the proper manner in the given format (exe, dll, service exe).  Builder will AES-256 encrypt the shellcode (generating a new key and IV each time it is run) and embed the encrypted shellcode within the template file. Once the template file is complete, it will be saved over program.cs in the respective format project.  MSBuild will the be called on the updated program.cs file in order to create the final payload in exe, dll, or service exe format.
 
